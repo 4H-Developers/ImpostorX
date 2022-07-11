@@ -29,8 +29,8 @@ namespace Impostor.Server.Plugins
 
             var rootFolder = Directory.GetCurrentDirectory();
 
-            pluginPaths.Add(Path.Combine(rootFolder, "plugins"));
-            libraryPaths.Add(Path.Combine(rootFolder, "libraries"));
+            pluginPaths.Add(Path.Combine(rootFolder, "插件"));
+            libraryPaths.Add(Path.Combine(rootFolder, "库"));
 
             var matcher = new Matcher(StringComparison.OrdinalIgnoreCase);
             matcher.AddInclude("*.dll");
@@ -43,7 +43,7 @@ namespace Impostor.Server.Plugins
             // TODO: Move this to a new context so we can unload/reload plugins.
             context.Resolving += (loadContext, name) =>
             {
-                Logger.Verbose("Loading assembly {0} v{1}", name.Name, name.Version);
+                Logger.Verbose("加载汇编 {0} v{1}", name.Name, name.Version);
 
                 // Some plugins may be referencing another Impostor.Api version and try to load it.
                 // We want to only use the one shipped with the server.
@@ -76,7 +76,7 @@ namespace Impostor.Server.Plugins
 
                 if (pluginStartup.Count > 1)
                 {
-                    Logger.Warning("A plugin may only define zero or one IPluginStartup implementation ({0}).", assembly);
+                    Logger.Warning("一个插件只能定义零个或一个IPluginStartup实现 ({0}).", assembly);
                     continue;
                 }
 
@@ -91,7 +91,7 @@ namespace Impostor.Server.Plugins
 
                 if (plugin.Count != 1)
                 {
-                    Logger.Warning("A plugin must define exactly one IPlugin or PluginBase implementation ({0}).", assembly);
+                    Logger.Warning("一个插件必须准确的定义一个iplugin或pluginbase的实现 ({ 0}).", assembly);
                     continue;
                 }
 
@@ -130,7 +130,7 @@ namespace Impostor.Server.Plugins
             {
                 if (!Directory.Exists(path))
                 {
-                    Logger.Warning("Path {path} was specified in the PluginLoader configuration, but this folder doesn't exist!", path);
+                    Logger.Warning("路径{Path}是在PluginLoader配置中指定的，但这个文件夹不存在！", path);
                 }
             }
         }
@@ -222,7 +222,7 @@ namespace Impostor.Server.Plugins
                 foreach (var dependency in hardDependencies[plugin].Where(dependency => !plugins.Contains(dependency)))
                 {
                     Logger.Error(
-                        "The plugin {plugin} has defined the plugin {dependency} as a hard dependency but its not present! {plugin} will not loaded.",
+                        "插件{plugin}将插件{dependency}定义为硬依赖，但它不存在！{plugin}将不会加载.",
                         plugin,
                         dependency,
                         plugin

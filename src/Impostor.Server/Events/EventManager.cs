@@ -92,7 +92,7 @@ namespace Impostor.Server.Events
             }
             catch (Exception e)
             {
-                _logger.LogError(e, "Invocation of event {0} threw an exception.", @event.GetType().Name);
+                _logger.LogError(e, "调用事件{0}引发了异常.", @event.GetType().Name);
             }
         }
 

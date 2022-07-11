@@ -1,4 +1,4 @@
-﻿using System.Net;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using Impostor.Server.Config;
@@ -34,7 +34,7 @@ namespace Impostor.Server.Net
             await _matchmaker.StartAsync(endpoint);
 
             _logger.LogInformation(
-                "Matchmaker is listening on {0}:{1}, the public server ip is {2}:{3}.",
+                "Matchmaker已开启监听 {0}:{1}, 公共服务器ip为 {2}:{3}.老李提醒您关防火墙不规范 内鬼两行泪",
                 endpoint.Address,
                 endpoint.Port,
                 _serverConfig.ResolvePublicIp(),

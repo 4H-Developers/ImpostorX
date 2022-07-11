@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -42,13 +42,13 @@ namespace Impostor.Server
 
             try
             {
-                Log.Information("Starting Impostor v{0}", DotnetUtils.Version);
+                Log.Information("启动私服喵！版本号 v{0}", DotnetUtils.Version);
                 CreateHostBuilder(args).Build().Run();
                 return 0;
             }
             catch (Exception ex)
             {
-                Log.Fatal(ex, "Impostor terminated unexpectedly");
+                Log.Fatal(ex, "私服意外终止");
                 return 1;
             }
             finally
@@ -73,7 +73,7 @@ namespace Impostor.Server
         private static IHostBuilder CreateHostBuilder(string[] args)
         {
             var configuration = CreateConfiguration(args);
-            var pluginConfig = configuration.GetSection("PluginLoader")
+            var pluginConfig = configuration.GetSection("插件加载")
                 .Get<PluginConfig>() ?? new PluginConfig();
 
             return Host.CreateDefaultBuilder(args)
@@ -132,7 +132,7 @@ namespace Impostor.Server
                         }
                         else
                         {
-                            throw new Exception("Missing a valid NodeLocator config.");
+                            throw new Exception("笨蛋没有配置跑不起来!.");
                         }
 
                         // Use the configuration as source for the list of nodes to provide
@@ -229,7 +229,7 @@ namespace Impostor.Server
                     loggerConfiguration
                         .MinimumLevel.Is(logLevel)
 #if DEBUG
-                        .MinimumLevel.Override("Microsoft", LogEventLevel.Debug)
+                        .MinimumLevel.Override("巨硬", LogEventLevel.Debug)
 #else
                         .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
 #endif

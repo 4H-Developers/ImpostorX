@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Net;
 using System.Threading;
@@ -44,7 +44,7 @@ namespace Impostor.Server.Recorder
 
         public async Task WriteConnectAsync(ClientRecorder client)
         {
-            _logger.LogTrace("Writing Connect.");
+            _logger.LogTrace("等待连接.");
 
             var context = _pool.Get();
 
@@ -64,7 +64,7 @@ namespace Impostor.Server.Recorder
 
         public async Task WriteDisconnectAsync(ClientRecorder client, string reason)
         {
-            _logger.LogTrace("Writing Disconnect.");
+            _logger.LogTrace("强制断开.");
 
             var context = _pool.Get();
 
@@ -85,7 +85,7 @@ namespace Impostor.Server.Recorder
 
         public async Task WriteMessageAsync(ClientRecorder client, IMessageReader reader, MessageType messageType)
         {
-            _logger.LogTrace("Writing Message.");
+            _logger.LogTrace("写入菜单.");
 
             var context = _pool.Get();
 
@@ -106,7 +106,7 @@ namespace Impostor.Server.Recorder
 
         public async Task WriteGameCreatedAsync(ClientRecorder client, GameCode gameCode)
         {
-            _logger.LogTrace("Writing GameCreated {0}.", gameCode);
+            _logger.LogTrace("一共创建 {0}房间.", gameCode);
 
             var context = _pool.Get();
 
@@ -128,7 +128,7 @@ namespace Impostor.Server.Recorder
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             _startTime = DateTimeOffset.UtcNow;
-            _logger.LogInformation("PacketRecorder is enabled, writing packets to {0}.", _path);
+            _logger.LogInformation("PacketRecorder已启用，正在将数据包写入 {0}.", _path);
 
             var writer = File.Open(_path, FileMode.CreateNew, FileAccess.Write, FileShare.Read);
 

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -24,11 +24,11 @@ namespace Impostor.Server.Plugins
 
         public async Task StartAsync(CancellationToken cancellationToken)
         {
-            _logger.LogInformation("Loading plugins.");
+            _logger.LogInformation("加载插件喵！.");
 
             foreach (var plugin in _plugins)
             {
-                _logger.LogInformation("Enabling plugin {0}.", plugin);
+                _logger.LogInformation("启用了 {0}个插件.", plugin);
 
                 // Create instance and inject services.
                 plugin.Instance = (IPlugin)ActivatorUtilities.CreateInstance(_serviceProvider, plugin.PluginType);
@@ -39,8 +39,8 @@ namespace Impostor.Server.Plugins
 
             _logger.LogInformation(
                 _plugins.Count == 1
-                    ? "Loaded {0} plugin."
-                    : "Loaded {0} plugins.",
+                    ? "加载了 {0} 插件."
+                    : "加载了 {0} 插件.",
                 _plugins.Count
             );
         }
@@ -53,7 +53,7 @@ namespace Impostor.Server.Plugins
             {
                 if (plugin.Instance != null)
                 {
-                    _logger.LogInformation("Disabling plugin {0}.", plugin);
+                    _logger.LogInformation("禁用插件 {0}个.", plugin);
 
                     // Disable plugin.
                     await plugin.Instance.DisableAsync();

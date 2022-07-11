@@ -37,7 +37,7 @@ namespace Impostor.Server.Net
 
         public override async ValueTask<bool> ReportCheatAsync(CheatContext context, string message)
         {
-            _logger.LogWarning("Client {Name} ({Id}) was caught cheating: [{Context}] {Message}", Name, Id, context.Name, message);
+            _logger.LogWarning("客户端 {Name} ({Id}) 被抓到作弊: [{Context}] {Message}", Name, Id, context.Name, message);
 
             if (!_antiCheatConfig.Enabled)
             {
@@ -58,7 +58,7 @@ namespace Impostor.Server.Net
         {
             var flag = reader.Tag;
 
-            _logger.LogTrace("[{0}] Server got {1}.", Id, flag);
+            _logger.LogTrace("[{0}] 服务器已获取 {1}.", Id, flag);
 
             switch (flag)
             {
@@ -104,7 +104,7 @@ namespace Impostor.Server.Net
                         case GameJoinError.None:
                             break;
                         case GameJoinError.InvalidClient:
-                            await DisconnectAsync(DisconnectReason.Custom, "Client is in an invalid state.");
+                            await DisconnectAsync(DisconnectReason.Custom, "客户端处于无效状态.");
                             break;
                         case GameJoinError.Banned:
                             await DisconnectAsync(DisconnectReason.Banned);
@@ -113,7 +113,7 @@ namespace Impostor.Server.Net
                             await DisconnectAsync(DisconnectReason.GameFull);
                             break;
                         case GameJoinError.InvalidLimbo:
-                            await DisconnectAsync(DisconnectReason.Custom, "Invalid limbo state while joining.");
+                            await DisconnectAsync(DisconnectReason.Custom, "加入时无效的limbo状态.");
                             break;
                         case GameJoinError.GameStarted:
                             await DisconnectAsync(DisconnectReason.GameStarted);
@@ -125,7 +125,7 @@ namespace Impostor.Server.Net
                             await DisconnectAsync(DisconnectReason.Custom, result.Message);
                             break;
                         default:
-                            await DisconnectAsync(DisconnectReason.Custom, "Unknown error.");
+                            await DisconnectAsync(DisconnectReason.Custom, "未知错误.");
                             break;
                     }
 
@@ -278,7 +278,7 @@ namespace Impostor.Server.Net
                         break;
                     }
 
-                    _logger.LogWarning("Server received unknown flag {0}.", flag);
+                    _logger.LogWarning("服务器收到未知标志 {0}.", flag);
                     break;
             }
 
@@ -289,7 +289,7 @@ namespace Impostor.Server.Net
                 reader.Position < reader.Length)
             {
                 _logger.LogWarning(
-                    "Server did not consume all bytes from {0} ({1} < {2}).",
+                    "服务器未使用来自的所有字节 { 0} ({1} < {2}).",
                     flag,
                     reader.Position,
                     reader.Length);
@@ -308,10 +308,10 @@ namespace Impostor.Server.Net
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Exception caught in client disconnection.");
+                _logger.LogError(ex, "客户端断开连接时捕获到异常.");
             }
 
-            _logger.LogInformation("Client {0} disconnecting, reason: {1}", Id, reason);
+            _logger.LogInformation("客户端{0}正在断开连接，原因； {1}", Id, reason);
             _clientManager.Remove(this);
         }
 
@@ -338,7 +338,7 @@ namespace Impostor.Server.Net
                     return true;
                 }
 
-                _logger.LogWarning("[{0}] Client sent packet only allowed by the host ({1}).", Id, game.HostId);
+                _logger.LogWarning("[{0}] 客户端发送的数据包仅由主机允许 ({1}).", Id, game.HostId);
                 return false;
             }
 

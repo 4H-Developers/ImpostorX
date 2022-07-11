@@ -1,10 +1,10 @@
-﻿using Impostor.Server.Utils;
+using Impostor.Server.Utils;
 
 namespace Impostor.Server.Config
 {
     internal class ServerConfig
     {
-        public const string Section = "Server";
+        public const string Section = "服务器";
 
         private string? _resolvedPublicIp;
         private string? _resolvedListenIp;

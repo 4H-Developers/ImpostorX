@@ -1,9 +1,3 @@
----
-title: 服务器客户端 ImpostorX v1.7.1
-tags: 'ImpostorX'
-date: 2022-07-011 21:20:56
-description: ImpostorX 是 Among Us 的完美私人服务器端，用 C# 编写
----
 
 ## 使用声明
 

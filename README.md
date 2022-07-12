@@ -36,8 +36,3 @@ mod支持。
 6. 运行`Impostor.Server`或`Impostor.Server.exe`。
 
 > 并不适用 Docker。
-
-## 下载地址
-
-[GitHub](https://github.com/4H-Developers/ImpostorX/releases/latest)
-
